@@ -1,1 +1,314 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LeadSuccess</title>
+  <style>
+    * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #6a0dad, #1e90ff, #2ecc71);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: auto;
+    }
+
+    .app {
+      width: 90%;
+      max-width: 900px;
+      max-height: 90vh;
+      overflow-y: auto;
+      background: rgba(0,0,0,0.35);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+      position: relative;
+    }
+
+    .hidden { display: none; }
+    header { text-align: center; margin-bottom: 30px; position: relative; }
+
+    #welcome::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: min(520px, 90vw);
+      height: min(520px, 90vw);
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.35), rgba(255,255,255,0.05), transparent 70%);
+      box-shadow:
+        0 0 40px rgba(255,255,255,0.35),
+        0 0 80px rgba(173,216,230,0.35),
+        0 0 120px rgba(138,43,226,0.35);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    #welcome > * { position: relative; z-index: 1; }
+
+    .logo { margin-bottom: 25px; }
+    .tagline { font-style: italic; font-size: 20px; animation: zoomTagline 2.5s ease-in-out infinite; }
+
+    @keyframes zoomTagline {
+      0% { transform: scale(0.85); opacity: 0.6; }
+      50% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(0.85); opacity: 0.6; }
+    }
+
+    .nav-buttons { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+
+    button {
+      padding: 14px 28px;
+      border-radius: 40px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      background: linear-gradient(145deg, #f0f0f0, #a9a9a9);
+      color: #000;
+    }
+
+    .content { margin-top: 20px; line-height: 1.6; text-align: center; }
+
+    #application .content { display: flex; flex-direction: column; align-items: center; }
+
+    #application form {
+      width: 100%;
+      max-width: 700px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .back { margin-top: 30px; display: block; text-align: center; }
+
+    #jobs .content a { color: #b0b0b0; text-decoration: none; }
+    #jobs .content a:hover { text-decoration: underline; }
+
+    #commentsBox {
+      width: 100%;
+      min-height: 120px;
+      padding: 12px;
+      border-radius: 10px;
+      resize: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+
+    <div id="welcome" class="page">
+      <header>
+        <div class="logo">
+          <h1 style="font-size:48px; font-family:'Bodoni MT Black','Bodoni MT',serif;">LeadSuccess</h1>
+          <div class="tagline">This is where you lead your success with AI</div>
+        </div>
+      </header>
+      <div class="nav-buttons">
+        <button onclick="showPage('home')">Home</button>
+        <button onclick="showPage('jobs')">Job Descriptions</button>
+        <button onclick="showPage('contact')">Contact Us</button>
+      </div>
+    </div>
+
+    <div id="home" class="page hidden">
+      <h2>Home</h2>
+      <div class="content">
+        <p><strong>About us…</strong></p>
+        <p style="font-style: italic; font-size: 0.95em;">LeadSuccess is an innovative company that uses AI as a virtual assistant while empowering people as leaders.</p>
+      </div>
+      <button class="back" onclick="showPage('welcome')">Back to Welcome</button>
+    </div>
+
+    <div id="jobs" class="page hidden">
+      <h2>Job Descriptions</h2>
+      <div class="content">
+        <p><a href="#" onclick="event.preventDefault(); showApplication('Sales Lead Specialist')">Sales Lead Specialist</a> – Drive lead generation, qualify prospects, and manage pipelines.</p>
+        <p><a href="#" onclick="event.preventDefault(); showApplication('Marketing Analyst')">Marketing Analyst</a> – Analyze campaigns and customer insights.</p>
+        <p><a href="#" onclick="event.preventDefault(); showApplication('Software Support Associate')">Software Support Associate</a> – Provide technical support to customers.</p>
+        <p><a href="#" onclick="event.preventDefault(); showApplication('Product Manager')">Product Manager</a> – Own product vision and roadmap.</p>
+        <p><a href="#" onclick="event.preventDefault(); showApplication('Project Manager')">Project Manager</a> – Deliver projects on time and on scope.</p>
+        <p><a href="#" onclick="event.preventDefault(); showApplication('Quality Control Manager')">Quality Control Manager</a> – Ensure quality standards.</p>
+        <p><a href="#" onclick="event.preventDefault(); showApplication('Product Support Manager')">Product Support Manager</a> – Lead customer support operations.</p>
+      </div>
+      <button class="back" onclick="showPage('welcome')">Back to Welcome</button>
+    </div>
+
+    <div id="application" class="page hidden">
+      <h2 style="text-align:center;">Job Application</h2>
+      <div class="content">
+        <p id="jobTitle"></p>
+        <form onsubmit="handleSubmit(event)">
+          <input type="text" placeholder="First Name" required />
+          <input type="text" placeholder="Last Name" required />
+          <input type="email" placeholder="Contact Email" required />
+          <input type="tel" placeholder="Contact Phone" required />
+          <input type="text" placeholder="Contact Address" required />
+
+          <input type="file" accept=".pdf,.doc,.docx" required onchange="validateFileSize(this)" />
+          <input type="file" accept=".pdf,.doc,.docx" onchange="validateFileSize(this)" />
+
+          <div style="width:100%; position:relative;">
+            <textarea id="commentsBox" placeholder="Additional comments..." oninput="handleCommentsInput(this)"></textarea>
+            <div id="commentCounter" style="position:absolute; bottom:6px; right:10px; font-size:12px; color:#ccc;">0 / 2000 characters</div>
+          </div>
+
+          <button type="submit">Submit Application</button>
+        </form>
+        <button class="back" onclick="showPage('jobs')">Back to Job Descriptions</button>
+      </div>
+    </div>
+
+    <div id="confirmation" class="page hidden">
+      <h2>Thank You for Applying</h2>
+      <div class="content">
+        <p>Your application has been successfully submitted.</p>
+      </div>
+      <button class="back" onclick="showPage('welcome')">Back to Welcome</button>
+    </div>
+
+    <div id="contact" class="page hidden">
+      <h2>Contact Us</h2>
+      <div class="content">
+        <p><strong>Company Address:</strong> 123 Acme Dr., Boston MA</p>
+        <p><strong>Contact Email:</strong> LeadSuccess@gmail.com</p>
+        <p><strong>Contact Phone:</strong> 123-456-7890</p>
+      </div>
+      <button class="back" onclick="showPage('welcome')">Back to Welcome</button>
+    </div>
+
+    <div id="leadbot" style="position:fixed; bottom:20px; right:20px; width:320px; max-height:420px; background:rgba(0,0,0,0.8); border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.6); display:flex; flex-direction:column; overflow:hidden; z-index:999;">
+      <div style="padding:12px; background:linear-gradient(135deg,#6a0dad,#1e90ff); font-weight:600; display:flex; justify-content:space-between; align-items:center;">
+        <span>🤖 LeadBot</span>
+        <div>
+          <button onclick="toggleMinimize()" style="margin-right:6px;">_</button>
+          <button onclick="toggleMaximize()">▢</button>
+        </div>
+      </div>
+      <div id="chatMessages" style="flex:1; padding:10px; overflow-y:auto; font-size:14px;"></div>
+      <div id="chatInputArea" style="display:flex; border-top:1px solid #444;">
+        <input id="chatInput" type="text" placeholder="Ask me about jobs…" style="flex:1; padding:10px; border:none; outline:none;">
+        <button onclick="sendMessage()" style="border-radius:0;">Send</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const FairJobAPI = {
+      jobs: [
+        { title: 'Sales Lead Specialist', description: 'Drive lead generation and manage pipelines.' },
+        { title: 'Marketing Analyst', description: 'Analyze campaigns and customer insights.' },
+        { title: 'Software Support Associate', description: 'Provide technical support.' },
+        { title: 'Product Manager', description: 'Own product vision and roadmap.' },
+        { title: 'Project Manager', description: 'Deliver projects successfully.' },
+        { title: 'Quality Control Manager', description: 'Ensure quality standards.' },
+        { title: 'Product Support Manager', description: 'Lead support operations.' }
+      ]
+    };
+
+    function showPage(pageId) {
+      document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+      document.getElementById(pageId).classList.remove('hidden');
+    }
+
+    function showApplication(jobTitle) {
+      document.getElementById('jobTitle').textContent = 'Applying for: ' + jobTitle;
+      showPage('application');
+    }
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      showPage('confirmation');
+    }
+
+    function handleCommentsInput(textarea) {
+      const max = 2000;
+      textarea.style.height = 'auto';
+      textarea.style.height = textarea.scrollHeight + 'px';
+      if (textarea.value.length > max) textarea.value = textarea.value.slice(0, max);
+      document.getElementById('commentCounter').textContent = textarea.value.length + ' / ' + max + ' characters';
+    }
+
+    function validateFileSize(input) {
+      const maxSize = 10 * 1024 * 1024;
+      if (input.files[0] && input.files[0].size > maxSize) {
+        alert('Please upload a file smaller than 10 MB.');
+        input.value = '';
+      }
+    }
+
+    function addMessage(sender, text) {
+      const chat = document.getElementById('chatMessages');
+      const div = document.createElement('div');
+      div.style.marginBottom = '8px';
+      div.innerHTML = `<strong>${sender}:</strong> ${text}`;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    let pendingJob = null;
+    let leadBotMinimized = false;
+
+    function toggleMinimize() {
+      const messages = document.getElementById('chatMessages');
+      const inputArea = document.getElementById('chatInputArea');
+      leadBotMinimized = !leadBotMinimized;
+      messages.style.display = leadBotMinimized ? 'none' : 'block';
+      inputArea.style.display = leadBotMinimized ? 'none' : 'flex';
+    }
+
+    function toggleMaximize() {
+      const bot = document.getElementById('leadbot');
+      const messages = document.getElementById('chatMessages');
+      const inputArea = document.getElementById('chatInputArea');
+
+      leadBotMinimized = false;
+      messages.style.display = 'block';
+      inputArea.style.display = 'flex';
+
+      bot.style.width = '320px';
+      bot.style.height = '';
+      bot.style.maxHeight = '420px';
+      bot.style.right = '20px';
+      bot.style.bottom = '20px';
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('chatInput');
+      const msg = input.value.trim();
+      if (!msg) return;
+      addMessage('You', msg);
+      input.value = '';
+
+      const lower = msg.toLowerCase();
+
+      if (lower.includes('what jobs')) {
+        addMessage('LeadBot', FairJobAPI.jobs.map(j => j.title).join('<br>'));
+        return;
+      }
+
+      const job = FairJobAPI.jobs.find(j => lower.includes(j.title.toLowerCase()));
+      if (job && lower.includes('apply')) {
+        addMessage('LeadBot', `Would you like to apply for ${job.title}? Please click the job title.`);
+        return;
+      }
+
+      if (job) {
+        addMessage('LeadBot', job.description);
+      } else {
+        addMessage('LeadBot', 'I can help you explore or apply for jobs.');
+      }
+    }
+  </script>
+</body>
+</html>
+
