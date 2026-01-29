@@ -1,0 +1,22 @@
+[
+  { "title": "Sales Lead Specialist", "description": "Drive lead generation and manage pipelines." },
+  { "title": "Marketing Analyst", "description": "Analyze campaigns and customer insights." },
+  { "title": "marketing analyst", "description": "Case-variation duplicate to test case-insensitive matching." },
+  { "title": "  Product Manager  ", "description": "Own product vision and roadmap. (Title has leading/trailing spaces)" },
+  { "title": "VeryVeryVeryLongTitle_This_Is_Intentionally_Long_To_Test_Overflow_Breakpoints_And_UI_Wrapping_Behavior_1234567890_VeryVeryVeryLongTitle_This_Is_Intentionally_Long_To_Test_Overflow_Breakpoints_And_UI_Wrapping_Behavior_1234567890", "description": "Stress test for very long titles." },
+  { "title": "Localization PM – 日本市場向け (JP Market)", "description": "日本語の文言レビュー、地域要件の調整、翻訳フロー最適化。" },
+  { "title": "Customer Success Manager 🚀", "description": "Own renewals, expansions; build QBRs; partner with Product & Support." },
+  { "title": "مدير مشروع (Project Manager)", "description": "إدارة النطاق والجدول الزمني والتكلفة." },
+  { "title": "Security Engineer \"Cloud\" & IAM", "description": "Assess IAM policies, secrets hygiene, KMS rotations." },
+  { "title": "QA Analyst / SDET \\ Automation", "description": "Build Playwright test suites; reduce flakiness." },
+  { "title": "Data Engineer &lt;ETL&gt;", "description": "Design batch/stream pipelines; optimize warehouses. (Title uses HTML entities)" },
+  { "title": "Intern", "description": "Support team tasks; learn and grow." },
+  { "title": "Support\u00A0Associate", "description": "Title contains a non-breaking space between words." },
+  { "title": "Design\u200DLead", "description": "Title contains a zero-width joiner between words." },
+  { "title": "Operations\nManager", "description": "Title contains a newline to test rendering/wrapping." },
+  { "title": "Product Support Manager", "description": "" },
+  { "title": "Data Analyst (GenAI) – LLM Prompting & Evaluation", "description": "Design prompt evals; define offline/online metrics; embeddings & vector DBs." },
+  { "title": "Quality Control Manager", "description": "Ensure quality standards.\nSecond line to test multi-line descriptions.\nThird line." },
+  { "title": "SEO Specialist — Growth", "description": "Uses en dash and em dash – — to validate encoding." },
+  { "title": "Customer Support (Tier 1)", "description": "   " }
+]
