@@ -1,0 +1,5 @@
+[
+  { "user_id": 1345678, "product_id": 90123, "impression_id": 555001, "rank": 1, "displayrandom": 0, "protected_attribute": 0, "senior": 1, "cat0": "U42", "cat6": "ENG", "num13": 0.82, "num14": 3.0 },
+  { "user_id": 1345679, "product_id": 90124, "impression_id": 555001, "rank": 2, "displayrandom": 0, "protected_attribute": 1, "senior": 0, "cat0": "U58", "cat6": "MKT", "num13": 0.27, "num14": 1.0 },
+  { "user_id": 1345680, "product_id": 90125, "impression_id": 555002, "rank": 1, "displayrandom": 1, "protected_attribute": 1, "senior": 1, "cat0": "U33", "cat6": "PM", "num13": 0.64, "num14": 2.0 }
+]
