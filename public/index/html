@@ -310,3 +310,39 @@
   </script>
 </body>
 </html>
+<script>
+  async function loadJobsFromFile() {
+    try {
+      // Use the 20-edge-cases dataset:
+      const res = await fetch('/public/data/fairjob-jobs-mock.json');
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const jobs = await res.json();
+
+      // If your page already defines FairJobAPI, update it:
+      if (window.FairJobAPI) {
+        FairJobAPI.jobs = jobs;
+      }
+
+      // (Optional) refresh the Jobs page dynamically
+      const jobsContent = document.querySelector('#jobs .content');
+      if (jobsContent) {
+        jobsContent.innerHTML = '';
+        jobs.forEach(j => {
+          const p = document.createElement('p');
+          const a = document.createElement('a');
+          a.href = '#';
+          a.textContent = j.title;
+          a.onclick = (ev) => { ev.preventDefault(); showApplication(j.title); };
+          p.appendChild(a);
+          p.insertAdjacentText('beforeend', ` – ${j.description || 'No description available.'}`);
+          jobsContent.appendChild(p);
+        });
+      }
+    } catch (err) {
+      console.error('Failed to load jobs mock:', err);
+      // If fetch fails, the original hardcoded array will still be there
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadJobsFromFile);
+</script>
